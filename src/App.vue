@@ -20,6 +20,7 @@ export default {
       // TODO: fetch this data using axios
       questions: [
         {
+          type: 'text',
           text: 'Hello first question text!',
         },
       ],
