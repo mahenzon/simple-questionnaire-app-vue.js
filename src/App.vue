@@ -18,7 +18,11 @@ export default {
   data() {
     return {
       // TODO: fetch this data using axios
-      questions: [],
+      questions: [
+        {
+          text: 'Hello first question text!',
+        },
+      ],
       summaryModifiers: {},
     }
   },

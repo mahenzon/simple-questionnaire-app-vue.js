@@ -1,12 +1,24 @@
 <template>
   <b-container>
-    <h1>Hello there</h1>
+    <b-row class="justify-content-md-center">
+      <b-col cols="12" md="10" lg="8" xl="6" align-g="center">
+        <b-progress :value="progressValue" :max="maxProgressValue" show-progress animated></b-progress>
+        <div class="my-2">
+          <Question v-show="showQuestion" v-on:processAnswer="processAnswer" :question="currentQuestion"/>
+        </div>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
+import Question from './Question'
+
 export default {
   name: "Survey",
+  components: {
+    Question,
+  },
   props: {
     questions: Array,
     summaryModifiers: Object,
@@ -57,6 +69,9 @@ export default {
           innerQuestionForChoice._parentQuestion = question
         }
       }
+    },
+    processAnswer(data) {
+      console.log('Got answer', data, 'for question', this.currentQuestion.text)
     },
   },
 }
