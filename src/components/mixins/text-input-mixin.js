@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     buttonText() {
-      return this.question.buttonText || "Next"
+      return this.question.buttonText
     },
     inputDataValid() {
       return null
