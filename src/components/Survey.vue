@@ -4,7 +4,7 @@
       <b-col cols="12" md="10" lg="8" xl="6" align-g="center">
         <b-progress :value="progressValue" :max="maxProgressValue" show-progress animated></b-progress>
         <div class="my-2">
-          <Question v-show="showQuestion" v-on:processAnswer="processAnswer" :question="currentQuestion"/>
+          <Question v-show="showQuestion" v-on:sendAnswer="processAnswer" :question="currentQuestion"/>
         </div>
       </b-col>
     </b-row>

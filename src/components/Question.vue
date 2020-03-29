@@ -2,7 +2,7 @@
   <div>
     <QuestionText
     v-if="question.type === 'text'"
-    v-on:processAnswer="processAnswer"
+    v-on:sendAnswer="sendAnswer"
     :question="question"
     />
   </div>
@@ -20,8 +20,8 @@ export default {
     question: Object,
   },
   methods: {
-    processAnswer(data) {
-      this.$emit('processAnswer', data)
+    sendAnswer(data) {
+      this.$emit('sendAnswer', data)
     },
   },
 }
