@@ -32,7 +32,23 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "semi": [
+        "error",
+        "never"
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ]
+    }
+  },
+  "jshintConfig": {
+    "undef": true,
+    "unused": true,
+    "esversion": 6,
+    "asi": true,
+    "globals": {}
   },
   "browserslist": [
     "> 1%",
