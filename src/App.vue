@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Survey msg="Welcome to Your Vue.js App"/>
+    <Survey :questions="questions" :summaryModifiers="summaryModifiers"/>
   </div>
 </template>
 
@@ -11,6 +11,13 @@ export default {
   name: 'App',
   components: {
     Survey,
+  },
+  data() {
+    return {
+      // TODO: fetch this data using axios
+      questions: [],
+      summaryModifiers: {},
+    }
   },
 }
 </script>
