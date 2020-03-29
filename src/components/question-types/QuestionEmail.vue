@@ -3,9 +3,10 @@
     <b-input
     v-on:keyup.enter="sendAnswer"
     v-model="inputTextData"
-    type="text"
+    type="email"
     :placeholder="question.placeholder"
     :state="inputDataValid"
+    :formatter="formatter"
     ></b-input>
     <ButtonNext
     class="mt-2"
@@ -22,15 +23,26 @@ import TextInputMixin from "../mixins/text-input-mixin"
 import ButtonNext from "./sub-types/ButtonNext"
 
 export default {
-  name: "QuestionText",
+  name: "QuestionEmail",
   mixins: [TextInputMixin],
   components: {
     ButtonNext,
   },
+  methods:{
+    formatter(value) {
+      return value.toLowerCase()
+    },
+    validEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(email)
+    },
+  },
   computed: {
     inputDataValid() {
-      if (this.inputTextData === null) return null
-      return this.inputTextData.length > 2
+      if (this.inputTextData !== null) {
+        return this.validEmail(this.inputTextData)
+      }
+      return null
     },
   },
 }

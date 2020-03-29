@@ -5,23 +5,32 @@
     v-on:sendAnswer="sendAnswer"
     :question="question"
     />
+
+    <QuestionEmail
+    v-if="question.type === 'email'"
+    v-on:sendAnswer="sendAnswer"
+    :question="question"
+    />
+
   </div>
 </template>
 
 <script>
-import QuestionText from './question-types/QuestionText'
+import QuestionText from "./question-types/QuestionText"
+import QuestionEmail from "./question-types/QuestionEmail"
 
 export default {
   name: "Question",
   components: {
     QuestionText,
+    QuestionEmail,
   },
   props: {
     question: Object,
   },
   methods: {
     sendAnswer(data) {
-      this.$emit('sendAnswer', data)
+      this.$emit("sendAnswer", data)
     },
   },
 }
