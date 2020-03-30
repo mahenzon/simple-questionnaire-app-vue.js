@@ -24,7 +24,7 @@ export default {
       return null
     },
     buttonVariant() {
-      return this.inputDataValid && 'primary' || 'dark'
+      return this.inputDataValid ? 'primary' : 'dark'
     },
   },
 }

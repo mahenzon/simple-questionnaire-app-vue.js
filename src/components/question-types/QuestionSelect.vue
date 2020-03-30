@@ -5,7 +5,7 @@
     class="mt-2"
     v-on:goNext="sendAnswer"
     :disabled="!selected"
-    :variant="selected && 'primary' || 'dark'"
+    :variant="selected ? 'primary' : 'dark'"
     />
   </b-card>
 </template>
