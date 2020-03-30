@@ -42,7 +42,6 @@ export default {
       axios
       .get(`${this.publicPath}data/questions.json`)
       .then(response => {
-        console.log("loaded")
         if (response.data) {
           if (response.data.questions) {
             this.questions = response.data.questions
