@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Survey :questions="questions" :summaryModifiers="summaryModifiers"/>
+    <Survey :questions="questions" :summaryOptions="summaryOptions"/>
   </div>
 </template>
 
@@ -75,12 +75,15 @@ export default {
           customOption: {
             // variantNo: 'warning',
             // variantYes: 'success',
-            textNo: "No.",
+            textNo: "Never.",
             textYes: "Yes, please!",
           },
         },
       ],
-      summaryModifiers: {},
+      summaryOptions: {
+        header: "Thanks!",
+        text: "You've completed the survey. Take a look at the results:",
+      },
     }
   },
 }

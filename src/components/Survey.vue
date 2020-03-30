@@ -5,6 +5,13 @@
         <b-progress :value="progressValue" :max="maxProgressValue" show-progress animated></b-progress>
         <div class="my-2">
           <Question v-show="showQuestion" v-on:sendAnswer="processAnswer" :question="currentQuestion"/>
+          <transition name="fade">
+            <Summary
+            v-show="showSummary"
+            :results="collectedResults"
+            :summaryOptions="summaryOptions"
+            />
+          </transition>
         </div>
       </b-col>
     </b-row>
@@ -12,16 +19,18 @@
 </template>
 
 <script>
-import Question from './Question'
+import Question from "./Question"
+import Summary from "./Summary"
 
 export default {
   name: "Survey",
   components: {
     Question,
+    Summary,
   },
   props: {
     questions: Array,
-    summaryModifiers: Object,
+    summaryOptions: Object,
   },
   data() {
     return {
@@ -113,5 +122,10 @@ export default {
 </script>
 
 <style>
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
