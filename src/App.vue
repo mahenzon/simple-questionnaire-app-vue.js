@@ -35,20 +35,26 @@ export default {
     }
   },
   mounted() {
-    axios
-    .get(`${this.publicPath}data/questions.json`)
-    .then(response => {
-      console.log("loaded")
-      if (response.data) {
-        if (response.data.questions) {
-          this.questions = response.data.questions
+    this.loadData()
+  },
+  methods: {
+    loadData() {
+      axios
+      .get(`${this.publicPath}data/questions.json`)
+      .then(response => {
+        console.log("loaded")
+        if (response.data) {
+          if (response.data.questions) {
+            this.questions = response.data.questions
+          }
+          if (response.data.summaryOptions) {
+            this.summaryOptions = response.data.summaryOptions
+          }
+          this.showSurvey = true
         }
-        if (response.data.summaryOptions) {
-          this.summaryOptions = response.data.summaryOptions
-        }
-        this.showSurvey = true
-      }
-    })
+      })
+      .catch(err => {console.error(err)})
+    },
   },
 }
 </script>
