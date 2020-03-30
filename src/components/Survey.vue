@@ -88,7 +88,6 @@ export default {
       }
     },
     processAnswer(data) {
-      console.log('Got answer', data, 'for question', this.currentQuestion.text)
       this.currentQuestion.answer = data
       this.answeredQuestions.push(this.currentQuestion)
 
