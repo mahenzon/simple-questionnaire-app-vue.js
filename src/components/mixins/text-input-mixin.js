@@ -12,7 +12,7 @@ export default {
       if (!this.inputDataValid) {
         return
       }
-      this.$emit("sendAnswer", {resilt: this.inputTextData})
+      this.$emit("sendAnswer", {result: this.inputTextData})
       this.inputTextData = null
     },
   },
