@@ -6,12 +6,14 @@
       @click="processClick(false)"
       class="mx-1"
       :variant="variantNo"
+      id="btnNo"
       >{{ textNo }}</b-button>
 
       <b-button
       @click="processClick(true)"
       class="mx-1"
       :variant="variantYes"
+      id="btnYes"
       >{{ textYes }}</b-button> 
 
     </b-card-body>

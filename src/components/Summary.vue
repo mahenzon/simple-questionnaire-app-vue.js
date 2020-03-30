@@ -1,5 +1,5 @@
 <template>
-  <b-card border-variant="success" class="mb-2 mx-auto">
+  <b-card data-cy="summary" border-variant="success" class="mb-2 mx-auto">
     <b-card-title>{{ summaryOptions.header }}</b-card-title>
     <b-card-text><h5>{{ summaryOptions.text }}</h5></b-card-text>
     <b-card-text>

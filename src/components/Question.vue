@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-cy="question">
     <QuestionText
     v-if="question.type === 'text'"
     v-on:sendAnswer="sendAnswer"

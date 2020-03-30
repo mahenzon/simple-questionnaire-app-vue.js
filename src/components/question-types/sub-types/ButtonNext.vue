@@ -4,6 +4,7 @@
   @click="$emit('goNext')"
   :disabled="disabled"
   :variant="variant"
+  data-cy="btnNext"
   >{{ text || 'Next' }}</b-button>
 </template>
 
