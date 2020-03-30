@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Survey :questions="questions" :summaryOptions="summaryOptions"/>
+    <Loading v-show="!showSurvey" transition="expand"/>
+    <Survey
+    v-if="showSurvey"
+    transition="expand"
+    :questions="questions"
+    :summaryOptions="summaryOptions"
+    />
   </div>
 </template>
 
@@ -8,83 +14,41 @@
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
 
+import axios from 'axios'
+
+import Loading from "./components/LoadingDummy"
 import Survey from "./components/Survey"
+
 
 export default {
   name: "App",
   components: {
     Survey,
+    Loading,
   },
   data() {
     return {
-      // TODO: fetch this data using axios
-      questions: [
-        {
-          type: "info",
-          header: "Weekly survey",
-          text: "You will be asked some questions",
-          buttonText: "Let's do it!",
-        },
-        {
-          type: "text",
-          text: "What is your name?",
-          placeholder: "John Smith",
-        },
-        {
-          type: "email",
-          text: "Your email:",
-          subtitle: "We won't send you anything without your approval 📧",
-          placeholder: "john.smith@example.com",
-        },
-        {
-          type: "select",
-          text: "Which sport do you prefer?",
-          options: [
-            { value: null, text: "Please select...", disabled: true },
-            { value: "tennis", text: "Tennis" },
-            { value: "football", text: "Football" },
-            { value: "formula-one", text: "Formula One" },
-          ],
-          onChoice: {
-            tennis: {
-              type: "text",
-              text: "Who is your favourite tennis player?",
-              placeholder: "Novak Djokovic",
-            },
-            football: {
-              type: "text",
-              text: "Which team do you support?",
-              placeholder: "Real Madrid",
-            },
-            "formula-one": {
-              type: "select",
-              text: "Which is your favourite race track?",
-              options: [
-                { value: null, text: "Favourite race track...", disabled: true },
-                { value: "monaco", text: "Monaco" },
-                { value: "spa", text: "Spa" },
-                { value: "suzuka", text: "Suzuka" },
-                { value: "monza", text: "Monza" },
-              ],
-            },
-          },
-        },
-        {
-          type: "bool",
-          text: "Do you wish to be contacted in future?",
-          customOption: {
-            // variantNo: 'warning',
-            // variantYes: 'success',
-            textNo: "Never.",
-            textYes: "Yes, please!",
-          },
-        },
-      ],
-      summaryOptions: {
-        header: "Thanks!",
-        text: "You've completed the survey. Take a look at the results:",
-      },
+      publicPath: process.env.BASE_URL,
+      questions: [],
+      summaryOptions: {},
+      showSurvey: false,
     }
+  },
+  mounted() {
+    axios
+    .get(`${this.publicPath}data/questions.json`)
+    .then(response => {
+      console.log("loaded")
+      if (response.data) {
+        if (response.data.questions) {
+          this.questions = response.data.questions
+        }
+        if (response.data.summaryOptions) {
+          this.summaryOptions = response.data.summaryOptions
+        }
+        this.showSurvey = true
+      }
+    })
   },
 }
 </script>
