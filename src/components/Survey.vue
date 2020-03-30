@@ -47,6 +47,7 @@ export default {
       maxProgressValue: 0,
       answeredQuestions: [],
       collectedResults: [],
+      localQuestions: [],
     }
   },
   created() {
@@ -54,14 +55,14 @@ export default {
   },
   methods: {
     processNewData() {
+      this.deepCopyIncomingQuestions()
       this.processRawQuestions()
-      this.currentQuestion = this.questions[0]
       this.maxProgressValue = this.totalQuestionsSteps
       this.resetQuestions()
     },
     processRawQuestions() {
       let previousQuestion
-      this.questions.forEach(question => {
+      this.localQuestions.forEach(question => {
         this.totalQuestions++
         this.totalQuestionsSteps++
         this.processRawQuestion(question)
@@ -126,11 +127,18 @@ export default {
     },
     resetQuestions() {
       this.progressValue = 0
-      this.currentQuestion = this.questions[0]
+      this.currentQuestion = this.localQuestions[0]
       this.showSummary = false
       this.showQuestion = true
       this.answeredQuestions = []
       this.collectedResults = []
+    },
+    deepCopyIncomingQuestions() {
+      this.localQuestions = []
+      // just creating a deep copy so we don't mutate props
+      this.questions.forEach(question => {
+        this.localQuestions.push(JSON.parse(JSON.stringify(question)))
+      })
     },
   },
 }
