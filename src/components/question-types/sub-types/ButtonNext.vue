@@ -11,7 +11,10 @@
 export default {
   name: "ButtonNext",
   props: {
-    disabled: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     variant: String,
     text: String,
   },
