@@ -32,7 +32,7 @@ export default {
       showSummary: false,
       progressValue: 0,
       maxProgressValue: 0,
-      questionsResults: [],
+      answeredQuestions: [],
       collectedResults: [],
     }
   },
@@ -72,6 +72,41 @@ export default {
     },
     processAnswer(data) {
       console.log('Got answer', data, 'for question', this.currentQuestion.text)
+      this.currentQuestion.answer = data
+      this.answeredQuestions.push(this.currentQuestion)
+
+      const nextQuestion = this.resolveNextQuestion(data)
+      if (nextQuestion === null) {
+        return this.showAnswersSummary()
+      }
+      this.progressValue = this.currentQuestion._progress
+      this.currentQuestion = nextQuestion
+    },
+    getNextOrParent(question) {
+      if (question._nextQuestion) {
+        return question._nextQuestion
+      }
+      if (question._parentQuestion) {
+        return this.getNextOrParent(question._parentQuestion)
+      }
+      return null
+    },
+    resolveNextQuestion(data) {
+      if (this.currentQuestion.onChoice) {
+        const questionForChoice = this.currentQuestion.onChoice[data.result]
+        if (questionForChoice) {
+          return questionForChoice
+        }
+        console.error("Next question for", this.currentQuestion.text, data, "not specified! Full question data:", this.currentQuestion)
+        return null
+      }
+      return this.getNextOrParent(this.currentQuestion)
+    },
+    showAnswersSummary() {
+      this.showQuestion = false
+      this.showSummary = true
+      this.progressValue = this.totalQuestionsSteps
+      this.collectedResults = this.answeredQuestions
     },
   },
 }
