@@ -24,6 +24,12 @@
     :question="question"
     />
 
+    <QuestionInfo
+    v-if="question.type === 'info'"
+    v-on:sendAnswer="sendAnswer"
+    :question="question"
+    />
+
   </div>
 </template>
 
@@ -32,6 +38,7 @@ import QuestionText from "./question-types/QuestionText"
 import QuestionEmail from "./question-types/QuestionEmail"
 import QuestionSelect from "./question-types/QuestionSelect"
 import QuestionBool from "./question-types/QuestionBool"
+import QuestionInfo from "./question-types/QuestionInfo"
 
 export default {
   name: "Question",
@@ -40,6 +47,7 @@ export default {
     QuestionEmail,
     QuestionSelect,
     QuestionBool,
+    QuestionInfo,
   },
   props: {
     question: Object,

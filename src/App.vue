@@ -20,6 +20,12 @@ export default {
       // TODO: fetch this data using axios
       questions: [
         {
+          type: "info",
+          header: "Weekly survey",
+          text: "You will be asked some questions",
+          buttonText: "Let's do it!",
+        },
+        {
           type: "text",
           text: "What is your name?",
           placeholder: "John Smith",
