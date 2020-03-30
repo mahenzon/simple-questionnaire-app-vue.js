@@ -2,7 +2,7 @@
 
 import { mount } from '@vue/test-utils'
 import QuestionBool from '@/components/question-types/QuestionBool.vue'
-import questionFixture from '../../fixtures/question-bool'
+import questionFixture from '../../fixtures/questions/question-bool'
 import { BootstrapVue, BButton } from 'bootstrap-vue'
 import { createLocalVue } from '@vue/test-utils'
 

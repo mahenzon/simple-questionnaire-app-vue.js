@@ -1,19 +1,20 @@
 // jshint -W117
 
 import { shallowMount, mount } from '@vue/test-utils'
+import { BootstrapVue } from 'bootstrap-vue'
+import { createLocalVue } from '@vue/test-utils'
+
 import Question from '@/components/Question.vue'
 import QuestionText from '@/components/question-types/QuestionText.vue'
 import QuestionEmail from '@/components/question-types/QuestionEmail.vue'
 import QuestionSelect from '@/components/question-types/QuestionSelect.vue'
 import QuestionBool from '@/components/question-types/QuestionBool.vue'
 import QuestionInfo from '@/components/question-types/QuestionInfo.vue'
-import { BootstrapVue } from 'bootstrap-vue'
-import { createLocalVue } from '@vue/test-utils'
-import questionTextFixture from '../fixtures/question-text'
-import questionEmailFixture from '../fixtures/question-email'
-import questionSelectFixture from '../fixtures/question-select'
-import questionBoolFixture from '../fixtures/question-bool'
-import questionInfoFixture from '../fixtures/question-info'
+import questionTextFixture from '../fixtures/questions/question-text'
+import questionEmailFixture from '../fixtures/questions/question-email'
+import questionSelectFixture from '../fixtures/questions/question-select'
+import questionBoolFixture from '../fixtures/questions/question-bool'
+import questionInfoFixture from '../fixtures/questions/question-info'
 
 // create an extended `Vue` constructor
 const localVue = createLocalVue()
