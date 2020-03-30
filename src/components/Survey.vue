@@ -30,15 +30,18 @@ export default {
     Summary,
   },
   props: {
-    questions: Array,
+    questions: {
+      type: Array,
+      required: true,
+    },
     summaryOptions: Object,
   },
   data() {
     return {
       totalQuestions: 0,
       totalQuestionsSteps: 0,
-      currentQuestion: null,
-      showQuestion: true,
+      currentQuestion: {},
+      showQuestion: false,
       showSummary: false,
       progressValue: 0,
       maxProgressValue: 0,
@@ -47,11 +50,15 @@ export default {
     }
   },
   created() {
-    this.processRawQuestions()
-    this.currentQuestion = this.questions[0]
-    this.maxProgressValue = this.totalQuestionsSteps
+    this.processNewData()
   },
   methods: {
+    processNewData() {
+      this.processRawQuestions()
+      this.currentQuestion = this.questions[0]
+      this.maxProgressValue = this.totalQuestionsSteps
+      this.resetQuestions()
+    },
     processRawQuestions() {
       let previousQuestion
       this.questions.forEach(question => {
