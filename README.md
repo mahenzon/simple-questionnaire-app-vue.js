@@ -1,5 +1,7 @@
 # simple-questionnaire-app
 
+## This project is available at https://mahenzon.github.io/simple-questionnaire-app-vue.js/
+
 ## Project setup
 ```
 npm install
