@@ -3,27 +3,32 @@
     <b-card-title>{{ summaryOptions.header }}</b-card-title>
     <b-card-text><h5>{{ summaryOptions.text }}</h5></b-card-text>
     <b-card-text>
-      <div>Got {{ resultsToShow.length }} results:</div>
-      <ul>
-        <li v-for="q in resultsToShow" :key="q._id">
-          <p>Q: {{ q.text }} </p>
-          <p>A: {{ q.answer.result }} </p>
-        </li>
-      </ul>
+      <b-list-group>
+        <SummaryResult
+        v-for="q in resultsToShow"
+        :key="q._id"
+        :question="q"
+        />
+      </b-list-group>
     </b-card-text>
   </b-card>
 </template>
 
 <script>
+import SummaryResult from './SummaryResult'
+
 export default {
   name: "Summary",
+  components: {
+    SummaryResult,
+  },
   props: {
     results: Array,
     summaryOptions: Object,
   },
   computed: {
     resultsToShow() {
-      return this.results.filter(q => q.answer.result)
+      return this.results.filter(q => q.answer.result !== undefined)
     },
   },
 }
