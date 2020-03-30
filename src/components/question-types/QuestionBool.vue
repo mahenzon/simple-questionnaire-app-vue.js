@@ -1,8 +1,19 @@
 <template>
   <b-card :title="question.text" :sub-title="question.subtitle">
     <b-card-body>
-      <b-button @click="processClick(false)" class="mx-1" :variant="variantNo">{{ textNo }}</b-button>
-      <b-button @click="processClick(true)" class="mx-1" :variant="variantYes">{{ textYes }}</b-button> 
+
+      <b-button
+      @click="processClick(false)"
+      class="mx-1"
+      :variant="variantNo"
+      >{{ textNo }}</b-button>
+
+      <b-button
+      @click="processClick(true)"
+      class="mx-1"
+      :variant="variantYes"
+      >{{ textYes }}</b-button> 
+
     </b-card-body>
   </b-card>
 </template>
