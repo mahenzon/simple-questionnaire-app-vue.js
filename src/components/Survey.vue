@@ -10,6 +10,7 @@
             v-show="showSummary"
             :results="collectedResults"
             :summaryOptions="summaryOptions"
+            v-on:restart="resetQuestions"
             />
           </transition>
         </div>
@@ -116,6 +117,14 @@ export default {
       this.showSummary = true
       this.progressValue = this.totalQuestionsSteps
       this.collectedResults = this.answeredQuestions
+    },
+    resetQuestions() {
+      this.progressValue = 0
+      this.currentQuestion = this.questions[0]
+      this.showSummary = false
+      this.showQuestion = true
+      this.answeredQuestions = []
+      this.collectedResults = []
     },
   },
 }

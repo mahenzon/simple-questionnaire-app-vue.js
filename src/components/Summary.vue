@@ -11,6 +11,7 @@
         />
       </b-list-group>
     </b-card-text>
+    <b-button block @click="$emit('restart')" variant="outline-dark">Restart survey</b-button>
   </b-card>
 </template>
 
