@@ -82,7 +82,7 @@
   "jshintConfig": {
     "undef": true,
     "unused": true,
-    "esversion": 8,
+    "esversion": 9,
     "asi": true,
     "globals": {}
   }
